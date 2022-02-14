@@ -40,7 +40,6 @@ public class DBManager {
 	// INSERT INTO RESULTS VALUES('Player One', 150);
 
 
-
 	ArrayList<Result> getAllResults() {
 		ArrayList<Result> data = new ArrayList<Result>();
 		Cursor cursor = db.rawQuery("SELECT * FROM RESULTS;", null);
@@ -55,6 +54,12 @@ public class DBManager {
 		}
 
 		return data;
+	}
+
+	int gamesCount() {
+		Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM RESULTS;", null);
+		cursor.moveToFirst();
+		return cursor.getInt(0);
 	}
 
 	private void createTablesIfNeedBe() {
